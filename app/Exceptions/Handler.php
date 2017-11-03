@@ -10,6 +10,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 /*use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;*/
+use Illuminate\Session\TokenMismatchException;
 
 class Handler extends ExceptionHandler
 {
@@ -47,6 +48,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof TokenMismatchException)
+        {
+            // Redirect to a form. Here is an example of how I handle mine
+            return redirect($request->fullUrl())->with('failed',"Oops! Seems you couldn't submit form for a long time. Please try again.");
+        }
+
         return parent::render($request, $e);
     }
 }
