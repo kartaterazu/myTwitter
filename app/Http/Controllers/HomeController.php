@@ -80,7 +80,7 @@ class HomeController extends Controller
 
         $users->save();
 
-        Session(['id'=>$user->id, 'name'=>$user->name]);
+        Session(['id'=>$users->id, 'name'=>$users->name]);
 
         return redirect('/post')->with('success',"Congratulation!! You're registered successfully");
     }

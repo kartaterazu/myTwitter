@@ -36,7 +36,7 @@
         <form action="{{ URL::to('profile-upload') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group text-center">
-                <img src="{{ URL::asset('img/profile/'.$user->image) }}" alt="{{ $user->name }}" class="img-circle img-profile">
+                <img src="{{ $user->image ? URL::asset('img/profile/'.$user->image) : URL::asset('img/profile/default.png') }}" alt="{{ $user->name }}" class="img-circle img-profile">
             </div>
             <div class="form-group text-center">
                 <input type="file" name="image" id="upload-image" style="display:none"/>

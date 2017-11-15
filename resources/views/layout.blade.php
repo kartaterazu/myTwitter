@@ -36,6 +36,7 @@
                 background-color: #dbdbdb;
                 padding-top: 20px;
                 padding-bottom: 40px;
+                margin-top: 20px;
 
             }
             .input-status input{

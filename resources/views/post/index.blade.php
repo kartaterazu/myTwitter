@@ -3,6 +3,9 @@
 @section('title', 'Post')
 
 @section('content')
+<div class="col-sm-12 col-md-12 text-center msg hidden">
+    <span class="alert alert-danger">Please input your status</span>
+</div>
 <div class="col-sm-12 col-md-12 input-status">
     {{ csrf_field() }}
     <div class="form-group">
@@ -70,9 +73,16 @@
         $("#update").click(function(event) {
             event.preventDefault();
 
-            
-                var post = $("#post").val();
-                var _token = $("input[name=_token]").val();
+            var post = $("#post").val();
+            var _token = $("input[name=_token]").val();
+
+            if(post == '')
+            {
+                $(".msg").removeClass('hidden').fadeIn("slow");
+            }
+            else
+            {
+                $(".msg").addClass('hidden').fadeOut("slow");
 
                 $.ajax({
                     url: '{{ URL::to("posting") }}',
@@ -107,7 +117,7 @@
                         $(".loading_twitter").fadeOut('slow');
                     }
                 });
-            
+            }
         });
 
         $("#post").bind('keypress', function(event) {
